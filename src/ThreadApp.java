@@ -26,10 +26,11 @@ public class ThreadApp extends Thread{
     static BlockingQueue<String> bQueue;
     static BlockingQueue<String> bQueue2;
 
-    static BlockingQueue<WebPage> processQueue;
-    static BlockingQueue<WebPage> processQueue2;
+    static BlockingQueue<WebPage> processQueue = new LinkedBlockingDeque<>();
+    static BlockingQueue<WebPage> processQueue2 = new LinkedBlockingDeque<>();
 
     static ArrayList<String> webAddresses = new ArrayList<String>();
+    static int flag = 0;
 
     public static void populateLinks(){
         bQueue = new LinkedBlockingDeque<>();
@@ -59,15 +60,23 @@ public class ThreadApp extends Thread{
         System.out.println("Took "+(endTime - startTime) / 1000000 + " ms");
     }
 
-    public static void crawl2(String link) throws IOException, InterruptedException {
+    //Section 1
+    public static void crawl2(String link) throws IOException {
         Document doc = Jsoup.connect(link).get();
-        WebPage modified = new WebPage(link,doc);
+        processQueue2.add(new WebPage(link,doc));
+        System.out.println("Completed adding 2 : " + link);
+        long endTime = System.nanoTime();
+        System.out.println("Took "+(endTime - startTime) / 1000000 + " ms");
+        flag = 1;
+    }
+
+    //Section 2
+    public static void crawl3 () throws InterruptedException, IOException {
         WebPage initial = processQueue.take();
+        WebPage modified = processQueue2.take();
         HashMap<String, ArrayList<String>> result = ChangeDetector.compare(WebCrawler.crawl(initial.getDoc()),
                 WebCrawler.crawl(modified.getDoc()));
-
         System.out.println("Changes detected: "+result );
-
     }
 
     public static void process(Document doc){
@@ -92,9 +101,13 @@ public class ThreadApp extends Thread{
         System.out.println("With threads");
         populateLinks();
         ExecutorService executorService = Executors.newFixedThreadPool(15);
+        ExecutorService executorService2 = Executors.newFixedThreadPool(15);
+        int N = 3; //Number of threads for crawling
+        int M = 2; //Number of threads for processing
 
         startTime = System.nanoTime();
-        for(int i=0; i<1 ; i++){
+        System.out.println("Entered the first for loop");
+        for(int i=0; i<N ; i++){
             executorService.execute(new Runnable() {
                 @Override
                 public void run() {
@@ -104,13 +117,12 @@ public class ThreadApp extends Thread{
                                 crawl(bQueue.take());
                             }
                             System.out.println("Sleeping");
-                            Thread.sleep(100000);
+                            Thread.sleep(25000);
                             if(bQueue.isEmpty()){
                                 while(!bQueue2.isEmpty()){
                                     crawl2(bQueue2.take());
                                 }
                             }
-
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -120,10 +132,38 @@ public class ThreadApp extends Thread{
                 }
             });
         }
+
+        System.out.println("Exit the first for loop");
+
+        System.out.println("Waiting till finished");
+        while(flag!=1){
+            System.out.print(" ");
+        } //it will loop here until flag=1
+        System.out.println("Flag passed");
+
+        System.out.println("Enter the 2nd for loop");
+        for(int j=0; j<M ; j++){
+            executorService2.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        try {
+                            while (!bQueue2.isEmpty()){
+                                crawl3();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
         executorService.shutdown();
+        executorService2.shutdown();
     }
-
-
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         processQueue = new LinkedBlockingDeque<>();
