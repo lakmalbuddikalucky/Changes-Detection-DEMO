@@ -57,7 +57,7 @@ public class ThreadApp extends Thread{
         processQueue.add(new WebPage(link, doc));
         System.out.println("Completed adding : " + link);
         long endTime = System.nanoTime();
-        System.out.println("Took "+(endTime - startTime) / 1000000 + " ms");
+        System.out.println("Initial crawl took " +(endTime - startTime) / 1000000 + " ms");
     }
 
     //Section 1
@@ -65,8 +65,8 @@ public class ThreadApp extends Thread{
         Document doc = Jsoup.connect(link).get();
         processQueue2.add(new WebPage(link,doc));
         System.out.println("Completed adding 2 : " + link);
-        long endTime = System.nanoTime();
-        System.out.println("Took "+(endTime - startTime) / 1000000 + " ms");
+        long endTimeCrawl = System.nanoTime();
+        System.out.println("Crawling took " +(endTimeCrawl - startTime) / 1000000 + " ms");
         flag = 1;
     }
 
@@ -76,7 +76,9 @@ public class ThreadApp extends Thread{
         WebPage modified = processQueue2.take();
         HashMap<String, ArrayList<String>> result = ChangeDetector.compare(WebCrawler.crawl(initial.getDoc()),
                 WebCrawler.crawl(modified.getDoc()));
-        System.out.println("Changes detected: "+result );
+        //System.out.println("Changes detected: "+result );
+        long endTimeDetection = System.nanoTime();
+        System.out.println("Detection took " +(endTimeDetection - startTime) / 1000000 + " ms");
     }
 
     public static void process(Document doc){
