@@ -2796,6 +2796,7 @@ public class ThreadApp extends Thread{
     public static void withThreads(){
 
         try {
+            System.out.println("Process begun!");
             PrintWriter pw = new PrintWriter(new File("results"));
             StringBuilder sb = new StringBuilder();
             sb.append("N");
