@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="31a3f5c2-181e-4bde-9cd5-de439e9e1c51" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreadApp.java" afterPath="$PROJECT_DIR$/src/ThreadApp.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,11 +28,12 @@
       <file leaf-file-name="ThreadApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ThreadApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="2798" column="46" lean-forward="false" selection-start-line="2798" selection-start-column="46" selection-end-line="2798" selection-end-column="46" />
+            <state relative-caret-position="35">
+              <caret line="2857" column="27" lean-forward="false" selection-start-line="2857" selection-start-column="27" selection-end-line="2857" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#913#921#0" expanded="true" />
+                <element signature="method#populateLinks#0;class#ThreadApp#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -673,7 +673,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495798080731</updated>
-      <workItem from="1495898276103" duration="18859000" />
+      <workItem from="1495898276103" duration="19646000" />
     </task>
     <task id="LOCAL-00001" summary="Adding endTimeCrawl and endTimeDetection variables">
       <created>1495898914665</created>
@@ -689,11 +689,18 @@
       <option name="project" value="LOCAL" />
       <updated>1495919203939</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add a print statement">
+      <created>1495919649380</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1495919649380</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18859000" />
+    <option name="totallyTimeSpent" value="19646000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -739,7 +746,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Adding endTimeCrawl and endTimeDetection variables" />
     <MESSAGE value="1. Adding website list&#10;2. Change previous ExecutorServices&#10;3. Automate the process&#10;4. 'result.csv' file generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. Adding website list&#10;2. Change previous ExecutorServices&#10;3. Automate the process&#10;4. 'result.csv' file generation" />
+    <MESSAGE value="Add a print statement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add a print statement" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -785,6 +793,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#913#921#0" expanded="true" />
+            <element signature="method#populateLinks#0;class#ThreadApp#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -824,6 +833,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#913#921#0" expanded="true" />
+            <element signature="method#populateLinks#0;class#ThreadApp#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -863,6 +873,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#913#921#0" expanded="true" />
+            <element signature="method#populateLinks#0;class#ThreadApp#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -882,6 +893,7 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#913#921#0" expanded="true" />
+            <element signature="method#populateLinks#0;class#ThreadApp#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -956,11 +968,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ThreadApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="2798" column="46" lean-forward="false" selection-start-line="2798" selection-start-column="46" selection-end-line="2798" selection-end-column="46" />
+        <state relative-caret-position="35">
+          <caret line="2857" column="27" lean-forward="false" selection-start-line="2857" selection-start-column="27" selection-end-line="2857" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#913#921#0" expanded="true" />
+            <element signature="method#populateLinks#0;class#ThreadApp#0" expanded="false" />
           </folding>
         </state>
       </provider>
