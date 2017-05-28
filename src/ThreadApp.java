@@ -32,7 +32,7 @@ public class ThreadApp extends Thread{
         bQueue2 = new LinkedBlockingDeque<>();
 
 
-        for(int x=0;x<2;x++){
+        for(int x=0;x<1;x++){
             {
                 bQueue.add("http://www.accountancyboard.gov.mt");
                 bQueue.add("http://www.activeageing.gov.mt");
@@ -534,7 +534,7 @@ public class ThreadApp extends Thread{
                 bQueue.add("http://www.getpersonas.com/");
                 bQueue.add("http://www.tripadvisor.com/");
                 bQueue.add("http://www.nate.com/");
-                bQueue.add("http://www.livejournal.com/");
+                /*bQueue.add("http://www.livejournal.com/");
                 bQueue.add("http://www.soufun.com/");
                 bQueue.add("http://www.zedo.com/");
                 bQueue.add("http://www.browserchoice.eu/");
@@ -1390,7 +1390,7 @@ public class ThreadApp extends Thread{
                 bQueue.add("http://www.king.com/");
                 bQueue.add("http://www.virginmedia.com/A1356");
                 bQueue.add("http://www.youtube.com/");
-                bQueue.add("http://www.google.com/");
+                bQueue.add("http://www.google.com/");*/
             }
 
             {
@@ -1894,7 +1894,7 @@ public class ThreadApp extends Thread{
                 bQueue2.add("http://www.getpersonas.com/");
                 bQueue2.add("http://www.tripadvisor.com/");
                 bQueue2.add("http://www.nate.com/");
-                bQueue2.add("http://www.livejournal.com/");
+                /*bQueue2.add("http://www.livejournal.com/");
                 bQueue2.add("http://www.soufun.com/");
                 bQueue2.add("http://www.zedo.com/");
                 bQueue2.add("http://www.browserchoice.eu/");
@@ -2750,10 +2750,44 @@ public class ThreadApp extends Thread{
                 bQueue2.add("http://www.king.com/");
                 bQueue2.add("http://www.virginmedia.com/A1356");
                 bQueue2.add("http://www.youtube.com/");
-                bQueue2.add("http://www.google.com/");
+                bQueue2.add("http://www.google.com/");*/
             }
         }
     }
+
+/*    public static void populateLinks(){
+        bQueue = new LinkedBlockingDeque<>();
+        bQueue2 = new LinkedBlockingDeque<>();
+
+
+        for(int x=0;x<2;x++){
+            {
+                bQueue.add("http://www.accountancyboard.gov.mt");
+                bQueue.add("http://www.activeageing.gov.mt");
+                bQueue.add("http://www.awas.gov.mt");
+                bQueue.add("http://www.agric.gov.mt");
+                bQueue.add("http://www.arpa.gov.mt");
+                bQueue.add("http://www.airmalta.com");
+                bQueue.add("https://www.facebook.com/AirMalta");
+                bQueue.add("https://www.facebook.com/groups/192782267554567/");
+                bQueue.add("http://www.airmaltaraffle.com");
+                bQueue.add("http://www.mymaltastory.com");
+            }
+
+            {
+                bQueue2.add("http://www.accountancyboard.gov.mt");
+                bQueue2.add("http://www.activeageing.gov.mt");
+                bQueue2.add("http://www.awas.gov.mt");
+                bQueue2.add("http://www.agric.gov.mt");
+                bQueue2.add("http://www.arpa.gov.mt");
+                bQueue2.add("http://www.airmalta.com");
+                bQueue2.add("https://www.facebook.com/AirMalta");
+                bQueue2.add("https://www.facebook.com/groups/192782267554567/");
+                bQueue2.add("http://www.airmaltaraffle.com");
+                bQueue2.add("http://www.mymaltastory.com");
+            }
+        }
+    }*/
 
     public static void crawl(String link) throws IOException {
         try {
@@ -2797,7 +2831,7 @@ public class ThreadApp extends Thread{
 
         try {
             System.out.println("Process begun!");
-            PrintWriter pw = new PrintWriter(new File("results"));
+            PrintWriter pw = new PrintWriter(new File("results.txt"));
             StringBuilder sb = new StringBuilder();
             sb.append("N");
             sb.append(',');
@@ -2806,10 +2840,12 @@ public class ThreadApp extends Thread{
             sb.append("Total Crawl Time (ms)");
             sb.append(',');
             sb.append("Total Change Detection Time (ms)");
-            sb.append('\n');
-            for (int k = 1; k < 102; k++) {
+            //sb.append('\n');
+            System.out.println(sb.toString());
+            pw.write(sb.toString());
+            for (int k = 101; k >= 1; k--) {
                 N = k;
-                for (int l = 1; l < k; l++) {
+                for (int l = 1; l <= k && l <16; l++) {
                     M = l;
                     populateLinks();
                     ExecutorService executorService0 = Executors.newFixedThreadPool(N+1);
@@ -2902,10 +2938,11 @@ public class ThreadApp extends Thread{
                         endTimeCrawl = System.nanoTime();
                     }
                     endTimeDetection = System.nanoTime();
-                    System.out.println("N=" + N + " , M=" + M);
-                    System.out.println("Initial crawl took " + (endTimeInitial - startTimeInitial) / 1000000 + " ms");
-                    System.out.println("Crawling took " + (endTimeCrawl - startTimeCrawl) / 1000000 + " ms");
-                    System.out.println("Detection took " + (endTimeDetection - startTimeDetection) / 1000000 + " ms\n");
+//                    System.out.println("N=" + N + " , M=" + M);
+//                    System.out.println("Initial crawl took " + (endTimeInitial - startTimeInitial) / 1000000 + " ms");
+//                    System.out.println("Crawling took " + (endTimeCrawl - startTimeCrawl) / 1000000 + " ms");
+//                    System.out.println("Detection took " + (endTimeDetection - startTimeDetection) / 1000000 + " ms\n");
+                    sb = new StringBuilder();
                     sb.append(N);
                     sb.append(',');
                     sb.append(M);
@@ -2913,10 +2950,11 @@ public class ThreadApp extends Thread{
                     sb.append((endTimeCrawl - startTimeCrawl) / 1000000);
                     sb.append(',');
                     sb.append((endTimeDetection - startTimeDetection) / 1000000);
-                    sb.append('\n');
+                    //sb.append('\n');
+                    System.out.println(sb.toString());
+                    pw.write(sb.toString());
                 }
             }
-            pw.write(sb.toString());
             pw.close();
             System.out.println("Done!");
         }catch(FileNotFoundException e){
